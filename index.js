@@ -12,8 +12,23 @@ app.get('/:user/:password', (req, res) => {
     }
     res.json({msg: 'FALLO EN EL USUARIO O CONTRASEÑA'})
 
-
 })
+
+// http://localhost:3000/login?fullname=William&password=3763
+app.get('/login', (req, res) => {
+    const {user, password} = req.query
+if(!user || !password){
+    res.status(400).json({msg: 'YOU NEED YO PROVIDE <USER> AN <PASSWORD> PARAMS'})
+}
+
+    if(user === 'William' & password === '3763'){
+        res.json({msg: 'INICIO DE SESIÓN EXITOSO'})
+            return
+        }
+        res.status(400).json({msg: 'FALLO EN EL USUARIO O CONTRASEÑA'})
+})
+
+
 
 app.post('/', (req, res) => {
     res.json({msg: 'HOLA POST'})
