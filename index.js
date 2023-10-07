@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 
+app.use(express.json())
 // REQ = REQUEST - - RES = RESPONSE
 
 //http://localhost:3000/william/3763
@@ -29,6 +30,25 @@ if(!user || !password){
 })
 
 
+
+app.post('/login', (req, res) => {
+    const {user, password} = req.body
+if(!user || !password){
+    res.status(400).json({msg: 'YOU NEED YO PROVIDE <USER> AN <PASSWORD> PARAMS'})
+}
+
+    if(user === 'William' & password === '3763'){
+        res.json({msg: 'INICIO DE SESIÓN EXITOSO'})
+            return
+        }
+        res.status(400).json({msg: 'FALLO EN EL USUARIO O CONTRASEÑA'})
+})
+
+app.post('/login', (req, res) =>{
+    const body = req.body
+    res.json(body)
+}
+)
 
 app.post('/', (req, res) => {
     res.json({msg: 'HOLA POST'})
